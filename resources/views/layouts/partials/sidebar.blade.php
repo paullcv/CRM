@@ -29,7 +29,7 @@
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
                              <a href="#" class="nav-link">
-                                 <i class="far fa-circle nav-icon"></i>
+                                 <i class="nav-icon fas fa-users nav-icon"></i>
                                  <p>Usuarios</p>
                              </a>
                          </li>
@@ -38,7 +38,7 @@
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
                              <a href="#" class="nav-link">
-                                 <i class="far fa-circle nav-icon"></i>
+                                 <i class="nav-icon fas fa fa-user-tie"></i>
                                  <p>Clientes</p>
                              </a>
                          </li>
@@ -47,7 +47,7 @@
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
                              <a href="#" class="nav-link">
-                                 <i class="far fa-circle nav-icon"></i>
+                                 <i class="nav-icon fas fa-project-diagram"></i>
                                  <p>Proyectos</p>
                              </a>
                          </li>
@@ -56,7 +56,7 @@
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
                              <a href="#" class="nav-link">
-                                 <i class="far fa-circle nav-icon"></i>
+                                <i class="nav-icon fas fa-tasks"></i>
                                  <p>Tareas</p>
                              </a>
                          </li>
