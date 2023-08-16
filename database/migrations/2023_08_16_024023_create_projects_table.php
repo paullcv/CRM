@@ -11,13 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
+
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->text('descripcion');
+            $table->date('deadline');
+            $table->string('status')->default('Abierto');
+
+            //nomenclatura para hacer la relacion entre tabla con laravel
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('client_id')->nullable()->constrained();
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('projects');
     }
 };

@@ -40,6 +40,10 @@
     <script src="{{asset('js/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('js/adminlte.min.js')}}"></script>
+
+    <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none">
+        {{ csrf_field()}}
+    </form>
 </body>
 
 </html>
