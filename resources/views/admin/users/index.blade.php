@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Us Listado de Usuarios</h1>
+                        <h1 class="m-0">Listado de Usuarios</h1>
                     </div>
                 </div>
             </div>
@@ -17,6 +17,8 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
+
+                                <a href="{{ route ('users.create')}}" class="btn btn-primary mb-3">Nuevo Usuario</a>
 
                                 <table class="table table-bordered" id="user_table">
                                     <thead>
