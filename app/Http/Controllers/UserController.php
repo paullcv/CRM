@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Auth\Events\Validated;
 
 class UserController extends Controller
 {
@@ -51,6 +52,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -59,6 +61,8 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         //
+        $user->updated($request->validated());
+        return redirect()->route('users.index')->with('success','Usuario editado exitosamente');
     }
 
     /**
@@ -66,6 +70,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $user->delete();
+        return back();
         //
     }
 }
