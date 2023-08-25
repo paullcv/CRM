@@ -33,7 +33,7 @@
 
                                 <a href="{{ route('clients.create') }}" class="btn btn-primary mb-3">Nuevo Cliente</a>
 
-                                <table class="table table-bordered" id="user_table">
+                                <table class="table table-bordered" id="client_table">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
@@ -48,17 +48,17 @@
                                     <tbody>
                                         @foreach ($clients as $client)
                                             <tr>
-                                                <td>{{ $user->contact_name }}</td>
-                                                <td>{{ $user->contact_email }}</td>
-                                                <td>{{ $user->contact_phone_number }}</td>
-                                                <td>{{ $user->company_name }}</td>
-                                                <td>{{ $user->company_address }}</td>
-                                                <td>{{ $user->company_phone_number }}</td>
+                                                <td>{{ $client->contact_name }}</td>
+                                                <td>{{ $client->contact_email }}</td>
+                                                <td>{{ $client->contact_phone_number }}</td>
+                                                <td>{{ $client->company_name }}</td>
+                                                <td>{{ $client->company_address }}</td>
+                                                <td>{{ $client->company_phone_number }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success">
+                                                    <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-success">
                                                         Editar
                                                     </a>
-                                                    <form action="{{ route('users.destroy', $user->id) }}"
+                                                    <form action="{{ route('clients.destroy', $client->id) }}"
                                                         id="delete_form" method="POST"
                                                         onsubmit="return confirm('Esta seguro que desea eliminar el registro?')"
                                                         style="display: inline-block;">

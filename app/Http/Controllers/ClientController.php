@@ -24,6 +24,7 @@ class ClientController extends Controller
     public function create()
     {
         //
+        return view('admin.clients.create');
     }
 
     /**
@@ -32,6 +33,8 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         //
+        Client::create($request->validated());
+        return redirect()->route('clients.index')->with('success','Cliente creado exitosamente');
     }
 
     /**
@@ -48,6 +51,7 @@ class ClientController extends Controller
     public function edit(Client $client)
     {
         //
+        return view('admin.clients.edit',compact('client'));
     }
 
     /**
@@ -56,6 +60,8 @@ class ClientController extends Controller
     public function update(UpdateClientRequest $request, Client $client)
     {
         //
+        $client->update($request->validated());
+        return redirect()->route('clients.index')->with('success','Cliente editado exitosamente');
     }
 
     /**
@@ -64,5 +70,7 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+        $client->delete();
+        return back();
     }
 }

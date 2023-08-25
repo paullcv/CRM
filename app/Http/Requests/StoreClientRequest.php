@@ -11,7 +11,7 @@ class StoreClientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,12 @@ class StoreClientRequest extends FormRequest
     {
         return [
             //
+            'contact_name' => ['required'],
+            'contact_email' => ['required','unique:clients,contact_email'],
+            'contact_phone_number' => ['required'],
+            'company_name' => ['required'],
+            'company_address' => ['required'],
+            'company_phone_number' => ['required'],
         ];
     }
 }
