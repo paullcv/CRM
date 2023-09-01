@@ -23,6 +23,12 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             //
+            'name' => ['required'],
+            'descripcion' => ['required'],
+            'deadline' => ['required'],
+            'status' => ['required'],
+            'client_id' => ['required'],
+            'user_id' => ['required'],
         ];
     }
 }

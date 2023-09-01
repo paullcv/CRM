@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Client;
+use App\Models\User;
 
 class ProjectController extends Controller
 {
@@ -24,6 +26,11 @@ class ProjectController extends Controller
     public function create()
     {
         //
+        $users = User::all();
+        $clients = Client::all();
+
+        return view('admin.projects.create',compact('users', 'clients'));
+
     }
 
     /**
@@ -32,6 +39,9 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         //
+        Project::create($request->validated());
+
+        return redirect()->route('projects.index')->with('success', 'Proyecto creado exitosamente');
     }
 
     /**
