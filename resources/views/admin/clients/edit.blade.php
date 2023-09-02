@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Nuevo Cliente</h1>
+                        <h1 class="m-0">Editar Cliente</h1>
                     </div>
                 </div>
             </div>
