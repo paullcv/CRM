@@ -18,47 +18,52 @@
                         <div class="card">
                             <div class="card-body">
                                 {{--  users.store es a ruta (y siempre tiene un name para que metodo se encargara) --}}
-                               
-                                <form method="POST" action="{{route('tasks.update', $task->id)}}">
+
+                                <form method="POST" action="{{ route('tasks.update', $task->id) }}">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
                                         <label for="name" class="required">Tarea</label>
-                                        <input type="text" name="name" id="name" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" placeholder="Ingrese el nombre de la tarea" value="{{old('name', $task->name)}}">
+                                        <input type="text" name="name" id="name"
+                                            class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                            placeholder="Ingrese el nombre de la tarea"
+                                            value="{{ old('name', $task->name) }}">
                                         @if ($errors->has('name'))
-                                        <span class="text-danger">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="descripcion" class="required">Descripción</label>
-                                        <textarea name="descripcion" class="form-control">{{old('descripcion', $task->descripcion)}}</textarea>
+                                        <textarea name="descripcion" class="form-control">{{ old('descripcion', $task->descripcion) }}</textarea>
                                         @if ($errors->has('descripcion'))
-                                        <span class="text-danger">
-                                            <strong>{{ $errors->first('descripcion') }}</strong>
-                                        </span>
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('descripcion') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="deadline" class="required">Fecha Límite</label>
-                                        <input name="deadline" type="text" class="form-control date" value="{{ old('deadline', $task->deadline) }}">
+                                        <input name="deadline" type="text" class="form-control date"
+                                            value="{{ old('deadline', $task->deadline) }}">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="user_id" class="required">Proyecto</label>
-                                        <select class="form-control select2" name="user_id" style="width: 100%;">
+                                        <select class="form-control select2" name="project_id" style="width: 100%;">
                                             <option value="">Seleccione un proyecto</option>
                                             @foreach ($projects as $project)
-                                            <option value="{{ $project->id }}" {{(old('project_id') ? old('project_id') : $task->project->id ?? '') == $project->id ? 'selected' : ''}}>
-                                                {{ $project->name }}
-                                            </option>
+                                                <option value="{{ $project->id }}"
+                                                    {{ (old('project_id') ? old('project_id') : $task->project->id ?? '') == $project->id ? 'selected' : '' }}>
+                                                    {{ $project->name }}
+                                                </option>
                                             @endforeach
                                         </select>
-                                        @if ($errors->has('user_id'))
-                                        <span class="text-danger">
-                                            <strong>{{ $errors->first('user_id') }}</strong>
-                                        </span>
+                                        @if ($errors->has('project_id'))
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('project_id') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
 
@@ -67,15 +72,16 @@
                                         <select class="form-control select2" name="user_id" style="width: 100%;">
                                             <option value="">Seleccione un usuario</option>
                                             @foreach ($users as $user)
-                                            <option value="{{ $user->id }}" {{(old('user_id') ? old('user_id') : $task->user->id ?? '') == $user->id ? 'selected' : ''}}>
-                                                {{ $user->name }}
-                                            </option>
+                                                <option value="{{ $user->id }}"
+                                                    {{ (old('user_id') ? old('user_id') : $task->user->id ?? '') == $user->id ? 'selected' : '' }}>
+                                                    {{ $user->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('user_id'))
-                                        <span class="text-danger">
-                                            <strong>{{ $errors->first('user_id') }}</strong>
-                                        </span>
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('user_id') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
 
@@ -84,35 +90,39 @@
                                         <select class="form-control select2" name="client_id" style="width: 100%;">
                                             <option value="">Seleccione un cliente</option>
                                             @foreach ($clients as $client)
-                                            <option value="{{ $client->id }}" {{(old('client_id') ? old('client_id') : $task->client->id ?? '' ) == $client->id ? 'selected' : ''}}>
-                                                {{ $client->contact_name }}
-                                            </option>
+                                                <option value="{{ $client->id }}"
+                                                    {{ (old('client_id') ? old('client_id') : $task->client->id ?? '') == $client->id ? 'selected' : '' }}>
+                                                    {{ $client->contact_name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('client_id'))
-                                        <span class="text-danger">
-                                            <strong>{{ $errors->first('client_id') }}</strong>
-                                        </span>
+                                            <span class="text-danger">
+                                                <strong>{{ $errors->first('client_id') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
 
                                     <div class="form-group">
                                         <label for="task_status">Status del proyecto</label>
-                                        <select class="form-control {{ $errors->has('task_status') ? 'is-invalid' : '' }}" name="task_status" id="task_status" required>
+                                        <select class="form-control {{ $errors->has('task_status') ? 'is-invalid' : '' }}"
+                                            name="task_status" id="task_status" required>
                                             <option value="">Seleccione un status</option>
-                                            @foreach(App\Models\Task::STATUS as $task_status)
-                                            <option value="{{ $task_status }}" {{ (old('task_status') ? old('task_status') : $task->task_status ?? '') == $task_status ? 'selected' : '' }}>{{ $task_status }}</option>
+                                            @foreach (App\Models\Task::STATUS as $task_status)
+                                                <option value="{{ $task_status }}"
+                                                    {{ (old('task_status') ? old('task_status') : $task->task_status ?? '') == $task_status ? 'selected' : '' }}>
+                                                    {{ $task_status }}</option>
                                             @endforeach
                                         </select>
-                                        @if($errors->has('task_status'))
-                                        <div class="text-danger">
-                                            {{ $errors->first('task_status') }}
-                                        </div>
+                                        @if ($errors->has('task_status'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('task_status') }}
+                                            </div>
                                         @endif
                                     </div>
                                     <div class="row d-print-none mt-2">
                                         <div class="col-12 text-right">
-                                            <a class="btn btn-danger" href="{{route('tasks.index')}}">
+                                            <a class="btn btn-danger" href="{{ route('tasks.index') }}">
                                                 <i class="fa fa-fw fa-lg fa-arrow-left"></i>
                                                 Regresar
                                             </a>
