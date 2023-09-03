@@ -76,6 +76,9 @@
 @endsection
 @section('scripts')
     <script>
-        new DataTable('#user_table');
+        //new DataTable('#user_table');
+        $(document).ready(function() {
+            $('#user_table').DataTable();
+        });
     </script>
 @endsection

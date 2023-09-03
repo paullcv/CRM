@@ -42,6 +42,7 @@
     </div>
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
+    <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.6/datatables.min.js"></script>
     {{-- <script src="{{ asset('js/plugins/jquery/jquery.min.js') }}"></script> --}}
     <!-- Bootstrap 4 -->
     <script src="{{ asset('js/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -53,17 +54,32 @@
     {{-- select2 y datapicker  --}}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
 
     <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none">
         {{ csrf_field() }}
     </form>
 
     <script>
-        $(document).ready(function(){
-            flatpickr(".date",{
-                "locale": "es" 
+        $(document).ready(function() {
+            flatpickr(".date", {
+                "locale": "es",
+               // dateFormat: "d/m/Y",
             });
+
+            $.extend(true, $.fn.dataTable.defaults, {
+                "language": {
+                    "url": "http://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+                columnDefs: [{
+                    targets: -1,
+                    "searching": false,
+                    "orderable": false
+                }, ]
+            });
+
             $('.select2').select2();
         })
     </script>

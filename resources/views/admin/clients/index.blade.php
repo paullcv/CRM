@@ -83,6 +83,9 @@
 @endsection
 @section('scripts')
     <script>
-        new DataTable('#client_table');
+        //new DataTable('#client_table');
+        $(document).ready(function() {
+            $('#client_table').DataTable();
+        });
     </script>
 @endsection

@@ -53,15 +53,15 @@
                                                 <td>{{ $task->descripcion }}</td>
                                                 <td>{{ $task->deadline }}</td>
                                                 <td>{{ $task->task_status }}</td>
-                                                <td>{{ $task->project->name  }}</td>
+                                                <td>{{ $task->project->name }}</td>
                                                 <td>{{ $task->client->contact_name }}</td>
-                                                <td>{{ $task->user->name  }}</td>
+                                                <td>{{ $task->user->name }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-success">
                                                         Editar
                                                     </a>
-                                                    <form action="{{ route('tasks.destroy', $task->id) }}"
-                                                        id="delete_form" method="POST"
+                                                    <form action="{{ route('tasks.destroy', $task->id) }}" id="delete_form"
+                                                        method="POST"
                                                         onsubmit="return confirm('Esta seguro que desea eliminar el registro?')"
                                                         style="display: inline-block;">
                                                         <input type="hidden" name="_method" value="DELETE">
@@ -85,6 +85,8 @@
 @endsection
 @section('scripts')
     <script>
-        new DataTable('#task_table');
+        $(document).ready(function() {
+            $('#task_table').DataTable();
+        });
     </script>
 @endsection
